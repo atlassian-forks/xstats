@@ -105,11 +105,11 @@ func (s *sender) fwd(w io.Writer, reportInterval time.Duration, maxPacketLen int
 				flush(w, buf)
 			}
 
-		case <-tick:
-			flush(w, buf)
 		case <-s.quit:
 			flush(w, buf)
 			return
+		case <-tick:
+			flush(w, buf)
 		}
 	}
 }
